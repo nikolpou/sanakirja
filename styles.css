@@ -1,0 +1,61 @@
+.grid-container {
+  float: center;
+  grid-template-columns: auto auto auto;
+  background-color: #98ffa1;
+  padding: 5px;
+  margin-top: 5px;
+  font-size: 13px;
+  font-family: "VT323", monospace;
+  font-weight: bold;
+}
+
+.grid-item {
+  background-color: rgba(113, 184, 101, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 5px;
+  font-size: 12px;
+  text-align: center;
+  font-family: "VT323", monospace;
+  font-weight: bold;
+}
+
+#tallennus {
+  display: none;
+}
+#haku {
+  display: none;
+}
+#nav {
+  height: 40px;
+  background: rgb(111, 136, 103);
+  width: 50%;
+  text-align: center;
+}
+
+#nav ul {
+  padding-top: 13px;
+  padding-left: 10px;
+  font-family: "VT323", monospace;
+}
+
+#nav li {
+  list-style: none;
+  float: left;
+  padding-right: 20px;
+}
+
+#nav .active {
+  font-family: "VT323", monospace;
+  font-weight: bold;
+  color: #000;
+}
+#sidebar {
+  float: center;
+  height: 60%;
+
+  background: rgb(9, 116, 110);
+  margin-top: 5px;
+  padding: 5px;
+  font-family: "VT323", monospace;
+  font-weight: bold;
+}

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+      $(document).ready(function () {
+        $('[name="Submit_tallenna"]').click(function () {
+          var fin = $(fi).val();
+          var eng = $(en).val();
+          $.ajax({
+            url: "http://127.0.0.1:3000/sanakirja/lisaa/",
+            type: "POST",
+            dataType: "json",
+            data: { fin: fin, eng: eng },
+            success: function () {
+              alert("Sanapari: " + fin + ", " + eng + " lisätty.");
+            },
+          });
+        });
+      });
+
+      $(document).ready(function () {
+        var eng = "";
+        $('[name="Submit_hae"]').click(function () {
+          var fin = $(finn).val();
+          $.ajax({
+            url: "http://127.0.0.1:3000/sanakirja/" + fin,
+            type: "GET",
+            dataType: "json",
+            data: fin,
+            success: function (returning_data) {
+              var eng = returning_data;
+              document.getElementById("console_output").innerHTML = eng;
+            },
+          });
+        });
+      });      
+    </script>
+  </head>
+  <div id="container">
+    <div id="nav">
+      <ul>
+        <input
+          id="lisaa"
+          type="button"
+          value="Lisää sanakirjaan"
+          onclick="document.getElementById('tallennus').style.display = 'inline-block'; document.getElementById('haku').style.display = 'none' "
+        ></input>
+        <input
+          id="hakubtn"
+          type="button"
+          value="Hae sanakirjasta"
+          onclick="document.getElementById('haku').style.display = 'inline-block';document.getElementById('tallennus').style.display = 'none' "
+        ></input>
+      </ul>      
+    </div>
+  </div>
+  <body>
+    <div class="grid-container" id="tallennus">
+      <br />
+      <form id="form" name="form">
+        <th>Tallenna sanapari.</th>
+        <br />
+        <div class="grid-item">
+          <td>
+            <p>
+              Suomeksi:
+              <input
+                name="fi"
+                id="fi"
+                type="text"
+                value=""
+                maxlength="35"
+                size="35"
+              />
+            </p>
+          </td>
+          <td>
+            <p>
+              Englanniksi:
+              <input
+                name="en"
+                id="en"
+                type="text"
+                value=""
+                maxlength="35"
+                size="35"
+              />
+            </p>
+          </td>
+        </div>
+        <div class="grid-item">
+          <td>
+            <input name="Submit_tallenna" type="button" value="Tallenna" />
+          </td>
+        </div>
+      </form>
+    </div>
+    <div class="grid-container" id="haku">
+      <br />
+      <form id="form" name="form">
+        <th>Hae sanapari.</th>
+        <br />
+        <div class="grid-item">
+          <td>
+            <p>
+              Suomeksi:
+              <input
+                name="fi"
+                id="finn"
+                type="text"
+                value=""
+                maxlength="35"
+                size="35"
+              />
+            </p>
+          </td>
+        </div>
+        <div class="grid-item">
+          <td>
+            <input name="Submit_hae" type="button" value="Hae" />
+          </td>
+        </div>
+        <div class="grid-item">
+          <div id="sidebar">
+            <h3>Englanniksi:</h3>
+            <p id="console_output"></p>
+          </div>
+      </form>
+    </div>
+  </body>
+</html>
